@@ -12,9 +12,16 @@ namespace TestEntretien
             List<string> input = new List<string>()
             {
                 "aabccccc",
-                "ddflfccccc"
+                "ddflfccccc",
+                "zzzzzzzzzzzzzzzzzzz"
             };
-                    
+
+
+            //char[] c = input.First().ToCharArray();
+            List<char> listChar = input.SelectMany(t => t.ToCharArray()).ToList();
+            listChar.GroupBy(x => x);
+
+
         }
         public static void Test2()
         {
