@@ -19,7 +19,7 @@ namespace TestEntretien
 
             //char[] c = input.First().ToCharArray();
             List<char> listChar = input.SelectMany(t => t.ToCharArray()).ToList();
-            listChar.GroupBy(x => x);
+            listChar.Aggregate();
 
 
         }
