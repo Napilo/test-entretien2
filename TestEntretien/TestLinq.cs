@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -7,21 +8,35 @@ namespace TestEntretien
 {
     public class TestLinq
     {        
-        public static void FindCharWithMaxOccurence()
+        public static char FindCharWithMaxOccurence()
         {
             List<string> input = new List<string>()
             {
-                "aabccccc",
+                "aabcccccooooooooooo",
                 "ddflfccccc",
-                "zzzzzzzzzzzzzzzzzzz"
+                //"zzzzzzzzzzzzzzzzzzz"
             };
 
 
             //char[] c = input.First().ToCharArray();
+            Dictionary<char, int> dict = new Dictionary<char, int>();
             List<char> listChar = input.SelectMany(t => t.ToCharArray()).ToList();
-            listChar.Aggregate();
+            listChar.Aggregate(dict, (x, y) =>
+            {
+                if (x.ContainsKey(y))
+                {
+                    dict[y]++;
+                }
+                else
+                {
+                    dict.Add(y, 1);
+                }
 
+                return dict;
+            });
 
+            char myChar = dict.First(x => x.Value == dict.Values.Max()).Key;
+            return myChar;
         }
         public static void Test2()
         {
